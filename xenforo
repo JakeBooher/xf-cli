@@ -1,0 +1,19 @@
+#! /bin/bash
+
+FILE="cmd.php"
+RED=$(tput setaf 1)
+RESET=$(tput sgr0)
+
+if [[ $XENFORO_PATH ]]; then
+    if [ -f $XENFORO_PATH/$FILE ]; then
+        php $XENFORO_PATH/$FILE $@
+    else
+        echo -e "${RED} XENFORO_PATH is not a valid XenForo 2 directory.${RESET}"
+    fi
+else
+    if [ -f $FILE ]; then
+        php $FILE $@
+    else
+        echo -e "${RED} It does not appear you are in a valid XenForo 2 directory.${RESET}"
+    fi
+fi
