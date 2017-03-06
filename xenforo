@@ -3,16 +3,17 @@
 FILE="cmd.php"
 RED=$(tput setaf 1)
 RESET=$(tput sgr0)
+PARAMS=$@
 
 runCommand() {
-    php $1 $2
+    php $1 ${PARAMS}
 }
 
 if [ -f $FILE ]; then
-    runCommand $FILE $@
+    runCommand $FILE
 elif [[ $XENFORO_PATH ]]; then
     if [ -f $XENFORO_PATH/$FILE ]; then
-        runCommand $XENFORO_PATH/$FILE $@
+        runCommand $XENFORO_PATH/$FILE
     else
         echo -e "${RED} XENFORO_PATH is not a valid XenForo 2 directory.${RESET}"
     fi
